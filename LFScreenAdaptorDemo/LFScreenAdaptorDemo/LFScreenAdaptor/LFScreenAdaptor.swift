@@ -223,11 +223,11 @@ extension DeviceType {
     }
 }
 
-struct LFScreenAdaptor {
+class LFScreenAdaptor {
     
     static let sharedAdaptor: LFScreenAdaptor = LFScreenAdaptor(designScreenType: DeviceType.IPhone_6.screenType)
     
-    let designScreen: ScreenType
+    var designScreen: ScreenType
     
     let currentDevice: DeviceType = {
         var systemInfo: utsname = utsname()
