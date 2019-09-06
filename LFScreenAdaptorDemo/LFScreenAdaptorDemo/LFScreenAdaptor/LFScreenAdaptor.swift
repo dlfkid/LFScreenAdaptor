@@ -65,7 +65,12 @@ extension ScreenType {
             return 375
         case .Type6_5, .Type6_1:
             return 414
-            
+        case .Type9_7:
+            return 768
+        case .Type10_5, .Type11:
+            return 834
+        case .Type12_9:
+            return 1024
         default:
             return 0
         }
@@ -85,7 +90,14 @@ extension ScreenType {
             return 812
         case .Type6_5, .Type6_1:
             return 896
-            
+        case .Type9_7:
+            return 1024
+        case .Type10_5:
+            return 1112
+        case .Type11:
+            return 1194
+        case .Type12_9:
+            return 1366
         default:
             return 0
         }
@@ -217,6 +229,9 @@ extension DeviceType {
         case .IPhone_XR:
             return "iPhone_XR"
             
+        case .Simulator:
+            return "Simulator"
+            
         default:
             return "Unknown"
         }
@@ -229,23 +244,15 @@ class LFScreenAdaptor {
     
     var designScreen: ScreenType
     
-    let currentDevice: DeviceType = {
+    lazy var currentDevice: DeviceType = {
         var systemInfo: utsname = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
-//        let identifier = machineMirror.children.reduce("") { identifier, elementin
-//
-//            guardletvalue = element.valueas?Int8wherevalue !=0else{returnidentifier }
-//
-//            returnidentifier +String(UnicodeScalar(UInt8(value)))
         let identifier = machineMirror.children.reduce("") { identifier, element in
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         switch identifier {
-//            if ([platform isEqualToString:@"iPhone1,1"])     return IPhone_1G;
-//            if ([platform isEqualToString:@"iPhone1,2"])     return IPhone_3G;
-//            if ([platform isEqualToString:@"iPhone2,1"])     return IPhone_3GS;
         case "iPhone1,1":                               return .IPhone_1G
         case "iPhone1,2":                               return .IPhone_3G
         case "iPhone2,1":                               return .IPhone_3GS

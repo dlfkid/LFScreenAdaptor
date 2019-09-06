@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print ("Current Device Type: \(LFScreenAdaptor.sharedAdaptor.currentDevice.name) Screen Type: \(LFScreenAdaptor.sharedAdaptor.currentScreen)")
+        let screenWidth: CGFloat = UIScreen.main.bounds.width
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        
+        print("Screen width: \(screenWidth) Screen height: \(screenHeight)")
     }
 
 
