@@ -128,6 +128,9 @@ enum DeviceType: Int {
     case IPhone_XS = 20 /// IPhone_XS: supported
     case IPhone_XSMax = 21 /// IPhone_XSMax: supported
     case IPhone_XR = 22 /// IPhone_XR: supported
+    case IPhone_11 = 23
+    case IPhone_11_Pro = 24
+    case IPhone_11_Pro_Max = 25
 }
 
 extension DeviceType {
@@ -151,13 +154,13 @@ extension DeviceType {
         case .IPhone_6P, .IPhone_7P, .IPhone_8P:
             return .Type5_5
             
-        case .IPhone_X, .IPhone_XS:
+        case .IPhone_X, .IPhone_XS, .IPhone_11_Pro:
             return .Type5_8
             
-        case .IPhone_XR:
+        case .IPhone_XR, .IPhone_11:
             return .Type6_1
             
-        case .IPhone_XSMax:
+        case .IPhone_XSMax, .IPhone_11_Pro_Max:
             return .Type6_5
             
         default:
@@ -229,6 +232,15 @@ extension DeviceType {
         case .IPhone_XR:
             return "iPhone_XR"
             
+        case .IPhone_11:
+            return "iPhone_11"
+            
+        case .IPhone_11_Pro:
+            return "iPhone_11_Pro"
+            
+        case .IPhone_11_Pro_Max:
+            return "iPhone_11_Pro_Max"
+            
         case .Simulator:
             return "Simulator"
             
@@ -253,6 +265,7 @@ class LFScreenAdaptor {
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         switch identifier {
+        case "i386", "x86_64":                          return .Simulator
         case "iPhone1,1":                               return .IPhone_1G
         case "iPhone1,2":                               return .IPhone_3G
         case "iPhone2,1":                               return .IPhone_3GS
@@ -279,7 +292,9 @@ class LFScreenAdaptor {
         // case "iPad5,1", "iPad5,2":                      return "iPad Mini 4"
         // case "iPad6,7", "iPad6,8":                      return "iPad Pro"
         // case "AppleTV5,3":                              return "Apple TV"
-        case "i386", "x86_64":                          return .Simulator
+        case "iPhone12,1":                               return .IPhone_11
+        case "iPhone12,3":                               return .IPhone_11_Pro
+        case "iPhone12,5":                               return .IPhone_11_Pro_Max
         default:                                        return .Unknown
         }
         
