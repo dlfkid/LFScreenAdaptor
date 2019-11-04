@@ -17,6 +17,11 @@ class ViewController: UIViewController {
         let screenHeight: CGFloat = UIScreen.main.bounds.height
         
         print("Screen width: \(screenWidth) Screen height: \(screenHeight)")
+        
+        let designedWidth = LFScreenAdaptor.sharedAdaptor.adaptedWidth(width: screenWidth)
+        let designedHeight = LFScreenAdaptor.sharedAdaptor.adaptedHeight(height: screenHeight)
+        
+        print("Designed width: \(designedWidth) Designed height: \(designedHeight)")
     }
 
 
